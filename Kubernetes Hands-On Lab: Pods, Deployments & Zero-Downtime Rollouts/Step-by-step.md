@@ -80,7 +80,7 @@ kubectl expose deployment web \
 ```
 Verify the service:
 ```kubectl get svc -n dev```
-
+![Service](https://github.com/user-attachments/assets/ef5479fa-4c91-49d6-a554-3c529fb8f53b)
 
 ---
 3. Rolling Update
