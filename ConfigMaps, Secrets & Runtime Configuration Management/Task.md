@@ -43,7 +43,7 @@ Verify the configmap:
 ```bash
 kubectl get configmap api-config -n development -o yaml
 ```
-
+![Configmap](https://github.com/user-attachments/assets/412792ad-bc8b-43d7-8ef9-eb4b755c4e72)
 
 
 #### 2. Create the Secret
@@ -61,6 +61,8 @@ Verify the Secret:
 kubectl get secret db_secret -n development -o yaml
 ```
 The password has been encoded to base64
+
+![Secret](https://github.com/user-attachments/assets/bbb82662-0698-4fbf-8f94-df2716c1c64b)
 
 
 #### 3. Create the Deployment having the Configmap and the Secret:
@@ -111,7 +113,7 @@ spec:
  kubectl apply -f api.yaml
  ```
 
-
+![Deployment](https://github.com/user-attachments/assets/2987333c-3909-4156-b083-81c346253602)
 
 #### 4.  Verify the deployment:
  ```bash
@@ -120,7 +122,7 @@ spec:
 
  Ensure the pod is Running before proceeding.
 
-
+![Deployment Verification](https://github.com/user-attachments/assets/41aa95ee-fcd8-4bca-bbb1-c93e54207040)
 
 
 #### 5. Exec into the pod
@@ -133,7 +135,7 @@ Exec into the pod:
 ```bash
 kubectl exec -it <pod name> -n development -- sh
 ```
-
+![Exec](https://github.com/user-attachments/assets/a3c2e02c-8f69-4f97-86b7-da54f7e53335)
 
 #### 6. Verify the Variables
 - check log level :
@@ -157,3 +159,5 @@ output=```SuperSecret123```
 ```bash
 exit
 ```
+
+![Variables](https://github.com/user-attachments/assets/a3c2e02c-8f69-4f97-86b7-da54f7e53335)
