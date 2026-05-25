@@ -80,6 +80,8 @@ kubectl expose deployment web \
 ```
 Verify the service:
 ```kubectl get svc -n dev```
+
+
 ![Service](https://github.com/user-attachments/assets/ef5479fa-4c91-49d6-a554-3c529fb8f53b)
 
 ---
@@ -91,6 +93,8 @@ kubectl set image deployment/web \
 web=nginx:1.26 \
 -n dev
 ```
+
+![ImageUpdate](https://github.com/user-attachments/assets/8a593229-fd40-4b49-a996-8fbcbff277ab)
 
 Watch rollout:
 
@@ -112,6 +116,7 @@ Verify rollback:
 ```kubectl describe deployment web -n dev```
 
 
+![Rollback](https://github.com/user-attachments/assets/9d962c6a-1828-47f4-acd4-75568cb80eb7)
 ---
 5. Scale to 5 replicas
 Scaling the replicas to 5 from the initial 3
@@ -125,6 +130,7 @@ Verification:
 ```kubectl get pods -n dev```
 
 
+![ScaleReplicasTo5](https://github.com/user-attachments/assets/5125ddc6-36cd-47e5-bbad-8b1e58c4ae97)
 ---
 6. Scale replicas down to 2
 
@@ -136,3 +142,6 @@ kubectl scale deployment web \
 
 Verification:
 ```kubectl get pods -n dev```
+
+
+![ScaleReplicasTo2](https://github.com/user-attachments/assets/2eddcee6-7fab-4570-8be3-3cd8db75c9a6)
