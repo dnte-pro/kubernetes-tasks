@@ -58,6 +58,9 @@ Expected output:
 NAME        STATUS   VOLUME   CAPACITY
 redis-pvc   Pending
 ```
+
+![PVC](https://github.com/user-attachments/assets/d2aab7d4-ab98-4c9a-ab9c-361b5e252c4a)
+
 ### Important notes:
 
 - Ensure to note the storage classes
@@ -133,6 +136,8 @@ Verify the deployment:
 ```bash
 kubectl get pods,pvc -n dev
 ```
+![Redis Deployment](https://github.com/user-attachments/assets/541e1d0e-45dc-4dce-b7e9-028b647a9c7b)
+
 
 ---
 ---
@@ -186,6 +191,9 @@ exit
 ```bash
 exit
 ```
+![Write Data to the pod](https://github.com/user-attachments/assets/f7058735-f934-4f11-b882-2e8914e1b66d)
+
+
 
 ---
 ---
@@ -203,6 +211,8 @@ Check if a new pod is created automatically:
 ```bash
 kubectl get pods -n dev
 ```
+
+![Delete Pod](https://github.com/user-attachments/assets/184abaa6-1383-4e46-be1b-9684b9be78ee)
 ---
 ---
 
@@ -229,6 +239,6 @@ Expected:
 ```bash
 "bar"
 ```
-
+![Verify Data Persistence](https://github.com/user-attachments/assets/eacfd069-7899-49a2-b9e8-4cfa88078493)
 
 </details>
