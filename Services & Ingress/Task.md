@@ -16,7 +16,7 @@
 - Test using curl -H "Host: ecostore.local" <ingress-ip> (or add to /etc/hosts).
 
 
-### Solution
+# Solution
 
 #### **Prerequisites:**
 The task does not mention the creation of namespace and deployment:
