@@ -54,7 +54,7 @@ kubectl get svc -n dev
 ```bash 
 kubectl get nodes -o wide
 ```
-
+![Expose](https://github.com/user-attachments/assets/874ec690-e8cd-4112-93d7-fff3951da8b0)
 
 
 ## 2. **Install NGINX Ingress Controller**
@@ -81,7 +81,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 ```bash 
 kubectl get pods -n ingress-nginx
 ```
-
+![Ingress Controller](https://github.com/user-attachments/assets/83037623-b6b3-4ecb-9b6d-e4107e22b502)
 
 
 
@@ -129,7 +129,7 @@ kubectl apply -f web-ingress.yaml
 ```bash 
 kubectl get ingress -n dev
 ```
-
+![web-ingress](https://github.com/user-attachments/assets/7ec394b0-1e8e-4ce3-a761-5dc41ac67859)
 
 
 
@@ -141,6 +141,7 @@ kubectl get svc -n ingress-nginx
 ```
 
 
+
 ### 5. Test using curl
 
 Test if the Ingress is working:
@@ -150,7 +151,7 @@ curl -H "Host: ecostore.local" http://<INGRESS-IP>
 ```
 NB: Change the <INGRESS-IP> with the IP address from the previous step
 
-
+![Curl](https://github.com/user-attachments/assets/2880c2c5-f6ef-4238-a1e5-45f2c9800708)
 
 ### 6. Add Local DNS Entry
 
@@ -168,3 +169,4 @@ Then test from the terminal:
 ```bash
 curl http://ecostore.local
 ```
+![Local DNS](https://github.com/user-attachments/assets/18d71778-9463-4dd9-9288-786fe935b4a7)
