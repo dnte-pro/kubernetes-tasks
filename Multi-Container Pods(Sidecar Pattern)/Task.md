@@ -68,6 +68,10 @@ spec:
 kubectl apply -f web-sidecar.yaml
 ```
 
+![web-sidecar](https://github.com/user-attachments/assets/09763b66-69cb-4c55-8712-0272780367c6)
+
+
+
 2. Verify the pod
 
 To verify the pod was created, run:
@@ -76,13 +80,16 @@ kubectl get pods -n dev
 ```
 
 
+![web-sidecar](https://github.com/user-attachments/assets/09763b66-69cb-4c55-8712-0272780367c6)
+
+
 3. Generate NGINX Access logs
 
 - Port-forward the pod port
 ```bash
 kubectl port-forward pod/web-sidecar 8080:80 -n dev
 ```
-
+![port-forward](https://github.com/user-attachments/assets/000bf6ee-1b27-41ce-8288-8f8817b87da9")
 
 - Open anotheer terminal to use it to generate traffic and run multiple rimes to see effect
 
@@ -90,7 +97,7 @@ kubectl port-forward pod/web-sidecar 8080:80 -n dev
 curl http://localhost:8080
 ```
 
-
+![curl](https://github.com/user-attachments/assets/e9061bd9-ceba-4611-98e0-23f094dd4f3d)
 
 4. View logs from sidecar container
 - Check the sidecar logs:
@@ -106,6 +113,8 @@ Expected output
 127.0.0.1 - - [27/May/2026:21:50:48 +0000] "GET / HTTP/1.1" 200 896 "-" "curl/7.81.0" "-"
 ```
 
+![logs](https://github.com/user-attachments/assets/417036e3-45bd-4dc5-b6fb-4301ae61e868)
+
 5. Verify shared Volume
 
 Inspect the pod:
@@ -113,6 +122,6 @@ Inspect the pod:
 kubectl describe pod web-sidecar -n dev
 ```
 
-
+![Volumes](https://github.com/user-attachments/assets/64f902ea-8c1f-42de-90cf-f239b20528cd)
 
 

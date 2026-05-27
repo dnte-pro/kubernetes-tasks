@@ -14,7 +14,7 @@ The objective was to simulate how modern cloud-native applications handle runtim
 
 ### Architecture Implemented
 
-
+![Architecture](https://github.com/user-attachments/assets/f79ee6f6-b7f0-4bff-86aa-1b8bb9d28134)
 
 #### Multi-Container Pod Deployment
 
