@@ -113,3 +113,90 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ```
 
 - Patch it automatically
+```bash
+kubectl patch deployment metrics-server -n kube-system \
+  --type='json' \
+  -p='[
+    {
+      "op":"add",
+      "path":"/spec/template/spec/containers/0/args/-",
+      "value":"--kubelet-insecure-tls"
+    }
+  ]'
+```
+
+or do it manually by editing the metrics-server deployment :
+
+```bash 
+kubectl edit deployment metrics-server -n kube-system
+```
+
+and edit the args section ```args:``` with 
+```bash
+ --kubelet-insecure-tls
+```
+
+The args section should look like:
+```bash
+args:
+  - --cert-dir=/tmp
+  - --secure-port=10250
+  - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+  - --kubelet-use-node-status-port
+  - --metric-resolution=15s
+  - --kubelet-insecure-tls
+```
+
+Wait till the metrics-server runs 
+```bash 
+kubectl get deployment -n kube-system
+```
+
+
+
+#### 3. Expose the deployment as a service
+
+
+Expose the deployment within the cluster for communication:
+
+```bash
+kubectl expose deployment api \
+  --name=api-svc \
+  --port=80 \
+  --target-port=80 \
+  -n development
+```
+
+Verify that the service was created:
+
+```bash 
+kubectl get svc -n dev
+```
+
+
+
+#### 4. Create the Horizontal Pod Autoscaler
+
+Run the hpa:
+
+```bash
+kubectl autoscale deployment api \
+  --cpu-percent=60 \
+  --min=2 \
+  --max=6 \
+  -n dev
+```
+
+Verify:
+
+```bash
+kubectl get hpa -n dev
+```
+
+#### 6. Watch Autoscaling in real time
+
+Open another terminal and watch what happens to the the hpa autoscaling:
+
+```bash
+kubectl get hpa,pods -n dev -w
+```
