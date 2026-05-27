@@ -90,13 +90,15 @@ spec:
  kubectl apply -f api.yaml
 ```
 
-
-**Note** - Ensure to create a namespace 'dev' or alter to use appropriate namespace
-
 - Verify
 ```bash 
 kubectl get pods -n dev
+
 ```
+![api.yaml](https://github.com/user-attachments/assets/ce033947-d958-4a87-9ec7-145239d5b34f)
+
+**Note** - Ensure to create a namespace 'dev' or alter to use appropriate namespace
+
 
 
 #### 2. Verify metrics server.
@@ -152,7 +154,7 @@ Wait till the metrics-server runs
 kubectl get deployment -n kube-system
 ```
 
-
+![metrics-server](https://github.com/user-attachments/assets/e8ff2f69-9e82-4d26-808a-b476a922b3f2)
 
 #### 3. Expose the deployment as a service
 
@@ -173,7 +175,7 @@ Verify that the service was created:
 kubectl get svc -n dev
 ```
 
-
+![expose-service](https://github.com/user-attachments/assets/c03fdd25-9bbf-4ce6-af18-a6679191b258)
 
 #### 4. Create the Horizontal Pod Autoscaler
 
@@ -193,10 +195,41 @@ Verify:
 kubectl get hpa -n dev
 ```
 
-#### 6. Watch Autoscaling in real time
+![hpa](https://github.com/user-attachments/assets/dfbafb43-9d71-4eaa-8cb3-9094b401df9b)
+
+#### 5. Watch Autoscaling in real time
 
 Open another terminal and watch what happens to the the hpa autoscaling:
 
 ```bash
 kubectl get hpa,pods -n dev -w
 ```
+![HPA-watching](https://github.com/user-attachments/assets/dfe705c8-0e5c-4b75-8559-217494935314)
+
+#### 6. Generate load
+On the previous terminal:
+Run the pod "load-generator" - that causes the cpu to burn
+
+
+```bash
+kubectl run load-generator \
+  --image=busybox \
+  -n development \
+  -- /bin/sh -c "while true; do wget -q -O- http://api-svc; done"
+
+```
+![load-generator](https://github.com/user-attachments/assets/330d455f-7e02-40a6-849e-80c9dc79eb1b)
+
+#### 8. Observe Scaling
+Watch as the replicas increase after the threshold is hit
+
+![Scaling](https://github.com/user-attachments/assets/f1e83512-70b0-4003-b2bd-baf3d4046cca)
+
+#### 9. Stop load-generator pod
+After the replicas have increased, delete the pod load-generator and watch the hpa scale down automatically 
+
+![Stop-load-generator](https://github.com/user-attachments/assets/91754831-8344-4cb7-9013-ada07f5112cf)
+
+
+> **Important note:** It is important to note that the load-generator may not be that effective in spiking the cpu threshold,
+You can curate the load generator configurations (With care definitely) to spike the cpu usage.
